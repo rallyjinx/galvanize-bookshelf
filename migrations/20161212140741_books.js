@@ -1,6 +1,4 @@
-'use strict';
-
-exports.up = function(knex) {
+exports.up = function (knex) {
   return knex.schema.createTable('books', (table) => {
     table.increments('id').primary();
     table.string('title').notNullable().defaultTo('');
@@ -12,6 +10,6 @@ exports.up = function(knex) {
   });
 };
 
-exports.down = function(knex) {
+exports.down = function (knex) {
   return knex.schema.dropTable('books');
 };

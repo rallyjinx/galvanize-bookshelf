@@ -44,7 +44,15 @@ router.patch('/books/:id', (req, res, next) => {
     });
 });
 router.delete('/books/:id', (req, res, next) => {
-
+  knex('books')
+    .del()
+    .where('id', req.params.id)
+    .then((books) => {
+      res.send('book deleted');
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 
 module.exports = router;

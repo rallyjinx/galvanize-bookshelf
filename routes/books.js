@@ -33,10 +33,15 @@ router.post('/books', (req, res, next) => {
     });
 });
 router.patch('/books/:id', (req, res, next) => {
-    for (var i = 0; i < req.body.length; i++) {
-      console.log(req.body[i]);
-    };
-    res.send('length' + req.body);
+  knex('books')
+    .update({ title: req.body.title, author: req.body.author, genre: req.body.genre, description: req.body.description, cover_url: req.body.cover_url  }, '*')
+    .where('id', req.params.id)
+    .then((books) => {
+      res.send(books[0]);
+    })
+    .catch((err) => {
+      next(err);
+    });
 });
 router.delete('/books/:id', (req, res, next) => {
 

@@ -24,7 +24,7 @@ router.get('/books/:id', (req, res, next) => {
 });
 router.post('/books', (req, res, next) => {
   knex('books')
-    .insert({ title: req.body.title, author: req.body.author, genre: req.body.genre, description: req.body.description, cover_url: req.body.cover_url  }, '*')
+    .insert({ title: req.body.title, author: req.body.author, genre: req.body.genre, description: req.body.description, cover_url: req.body.cover_url }, '*')
     .then((books) => {
       res.send(books[0]);
     })
@@ -34,7 +34,7 @@ router.post('/books', (req, res, next) => {
 });
 router.patch('/books/:id', (req, res, next) => {
   knex('books')
-    .update({ title: req.body.title, author: req.body.author, genre: req.body.genre, description: req.body.description, cover_url: req.body.cover_url  }, '*')
+    .update({ title: req.body.title, author: req.body.author, genre: req.body.genre, description: req.body.description, cover_url: req.body.cover_url }, '*')
     .where('id', req.params.id)
     .then((books) => {
       res.send(books[0]);
